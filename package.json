@@ -1,0 +1,19 @@
+{
+  "name": "projetosimple",
+  "version": "1.0.0",
+  "description": "project in image",
+  "license": "ISC",
+  "author": "Leonardo",
+  "type": "commonjs",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server",
+    "build": "tsc -w",
+    "dev": "npx tsc --watch"
+  },
+  "devDependencies": {
+    "lite-server": "^2.6.1",
+    "typescript": "^5.8.2"
+  }
+}
