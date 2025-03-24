@@ -24,21 +24,11 @@ export async function Python() {
     const rect = canvas.getBoundingClientRect();
     const ctx = canvas.getContext("2d");
 
-    let positionX_player01 = 0;
-    let positionY_player01 = 0;
-
-    let positionX_player02 = 0;
-    let positionY_player02 = 0;
-    // let pixels = 16;
-
     const pixels = 20;
 
     document.addEventListener('keydown', initPlayer);
 
     let init = async () => {
-
-        console.log("CANVAS WIDTH: ", canvas.width);
-        console.log("CANVAS HEIGHT: ", canvas.height);
 
         limitJogo = {
             xMin: 0,
@@ -50,16 +40,16 @@ export async function Python() {
         //player 01
         player01.tamanhoPixelsWidht = pixels;
         player01.tamanhoPixelsHeight = pixels;
-        positionX_player01 = 140;
-        positionY_player01 = 140;
-        await initFillRect(positionX_player01, positionY_player01, player01.tamanhoPixelsWidht, player01.tamanhoPixelsHeight, "red");
+        player01.positionX = 140;
+        player01.positionY = 140;
+        await initFillRect(player01.positionX, player01.positionY, player01.tamanhoPixelsWidht, player01.tamanhoPixelsHeight, "red");
 
         //player 02
         player02.tamanhoPixelsHeight = pixels;
         player02.tamanhoPixelsWidht = pixels;
-        positionX_player02 = 120;
-        positionY_player02 = 120;
-        await initFillRect(positionX_player02, positionY_player02, player02.tamanhoPixelsWidht,  player02.tamanhoPixelsHeight, "green");
+        player02.positionX = 120;
+        player02.positionY = 120;
+        await initFillRect(player02.positionX, player02.positionY, player02.tamanhoPixelsWidht,  player02.tamanhoPixelsHeight, "green");
     }
 
     let initFillRect = async (positionX: number, positionY: number, tamanhoPixelsWidht: number, tamanhoPixelsHeight: number, color: "red" | "#222" | "green") => {
@@ -70,94 +60,63 @@ export async function Python() {
     }
 
     async function initPlayer(event: KeyboardEvent) {
-        let positionX_anterior_player01 = positionX_player01;
-        let positionY_anterior_player01 = positionY_player01;
+        let positionX_anterior_player01 = player01.positionX;
+        let positionY_anterior_player01 = player01.positionY;
         
-        let positionX_anterior_player02 = positionX_player02;
-        let positionY_anterior_player02 = positionY_player02;
+        let positionX_anterior_player02 = player02.positionX;
+        let positionY_anterior_player02 = player02.positionY;
 
-        // coordernadaX =  event.target.clientX - rect.left;
-        // coordernadaY = event.target.clientY - rect.top;
-
-        // let coordernadaX = 0;
-        // let coordernadaY = 0;
-        // console.log("tamanhoPixelsWidht: ", cobra.tamanhoPixelsWidht);
-        // console.log("tamanhoPixelsHeight: ", cobra.tamanhoPixelsHeight);
-
-        // console.log(`Coordenadas: x=${coordernadaX}, y=${coordernadaY}`);
-
-        switch(event.key) {
-             //player_01
+        switch (event.key) {
             case keydownClick.ARROW_DOWN:
-                if(!(positionY_player01 >= limitJogo.yMax)) {
-                    positionY_player01 += pixels;
-                }
-                break;
-            case keydownClick.ARROW_LEFT:
-                if(!(positionX_player01 <= limitJogo.xMin)) {
-                    positionX_player01 -= pixels;
-                }
-                break;
-            case keydownClick.ARROW_RIGHT:
-                if(!(positionX_player01 >= limitJogo.xMax)) {
-                    positionX_player01 += pixels;
-                }
+                if (await verificLimitCanvas(player01, limitJogo, "down")) player01.positionY += pixels;
                 break;
             case keydownClick.ARROW_UP:
-                if(!(positionY_player01 <= limitJogo.yMin)) {
-                    positionY_player01 -= pixels;
-                }
+                if (await verificLimitCanvas(player01, limitJogo, "up")) player01.positionY -= pixels;
                 break;
-            
-            //player_02
-            case keydownClick.A:
-                if(!(positionX_player02 <= limitJogo.xMin)) {
-                    positionX_player02 -= pixels;
-                }
+            case keydownClick.ARROW_LEFT:
+                if (await verificLimitCanvas(player01, limitJogo, "left"))  player01.positionX -= pixels;
                 break;
-            case keydownClick.D:
-                if(!(positionX_player02 >= limitJogo.xMax)) {
-                    positionX_player02 += pixels;
-                }
+            case keydownClick.ARROW_RIGHT:
+                if (await verificLimitCanvas(player01, limitJogo, "right")) player01.positionX += pixels;
+                break;
+        
+            case keydownClick.W:
+                if (await verificLimitCanvas(player02, limitJogo, "up")) player02.positionY -= pixels;
                 break;
             case keydownClick.S:
-                if(!(positionY_player02 >= limitJogo.yMax)) {
-                    positionY_player02 += pixels;
-                }
+                if (await verificLimitCanvas(player02, limitJogo, "down")) player02.positionY += pixels;
                 break;
-            case keydownClick.W:
-                if(!(positionY_player02 <= limitJogo.yMin)) {
-                    positionY_player02 -= pixels;
-                }
+            case keydownClick.A:
+                if (await verificLimitCanvas(player02, limitJogo, "left")) player02.positionX -= pixels;
+                break;
+            case keydownClick.D:
+                if (await verificLimitCanvas(player02, limitJogo, "right")) player02.positionX += pixels;
                 break;
         }
+        
 
          // player 01
         await initFillRect(positionX_anterior_player01, positionY_anterior_player01, player01.tamanhoPixelsWidht, player01.tamanhoPixelsHeight, "#222");
-        await initFillRect(positionX_player01, positionY_player01, player01.tamanhoPixelsWidht, player01.tamanhoPixelsHeight, "red");
+        await initFillRect(player01.positionX, player01.positionY, player01.tamanhoPixelsWidht, player01.tamanhoPixelsHeight, "red");
 
         
         // player 02
         await initFillRect(positionX_anterior_player02, positionY_anterior_player02, player02.tamanhoPixelsWidht, player02.tamanhoPixelsHeight, "#222");
-        await initFillRect(positionX_player02, positionY_player02, player02.tamanhoPixelsWidht, player02.tamanhoPixelsHeight, "green");
+        await initFillRect(player02.positionX, player02.positionY, player02.tamanhoPixelsWidht, player02.tamanhoPixelsHeight, "green");
 
 
     }
 
-    // let runPython = async () => {
-    //     setInterval( async () => {
-    //         await initFillRect(positionX, positionY, player01.tamanhoPixelsWidht, player01.tamanhoPixelsHeight, "red");
-    //     }, 2000)
-    // }
-
-    let playerEatPixels = () => {
-
-    }
-
-    let addPixelsPlayer = async () => {
-   
+    let verificLimitCanvas = async (player: Player, limite: SizeJogo, direcao: string) => {
+        return {
+            up: player.positionY > limite.yMin,
+            down: player.positionY < limite.yMax,
+            left: player.positionX > limite.xMin,
+            right: player.positionX < limite.xMax
+        }[direcao];
     }
 
 
     await init();
 }
+    
