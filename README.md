@@ -54,12 +54,9 @@ Este é um jogo simples de dois jogadores desenvolvido em JavaScript e HTML5, on
 
 - **HTML5:** Estrutura do jogo e canvas.
 - **CSS:** Estilização da página.
-- **JavaScript (ES6):** Lógica do jogo, interatividade e manipulação do canvas.
+- **TypeScript:** Lógica do jogo, interatividade e manipulação do canvas.
+- **JavaScript (ES6):**
+  
+## Imagens do Game
+![image](https://github.com/user-attachments/assets/a1949491-7fd1-473f-8de3-278acf5ae7a1)
 
-### Licença
-
-Este projeto está licenciado sob a MIT License.
-
----
-
-Será que você quer que eu busque o repositório do GitHub correspondente a este projeto?
