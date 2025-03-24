@@ -30,7 +30,7 @@ export function Game() {
         const ctx = canvas.getContext("2d");
         const scorePlayer01 = document.querySelector("#scoreP1");
         const scorePlayer02 = document.querySelector("#scoreP2");
-        const somEat = new Audio("../assets/eatSom.mp3");
+        const somEat = new Audio("../../assets/eatSom.mp3");
         const pixels = 20;
         document.addEventListener('keydown', initPlayer);
         let init = () => __awaiter(this, void 0, void 0, function* () {

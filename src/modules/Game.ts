@@ -27,7 +27,7 @@ export async function Game() {
     const ctx = canvas.getContext("2d");
     const scorePlayer01: Element | null = document.querySelector("#scoreP1");
     const scorePlayer02: Element | null = document.querySelector("#scoreP2");
-    const somEat: HTMLAudioElement = new Audio("../assets/eatSom.mp3")
+    const somEat: HTMLAudioElement = new Audio("../../assets/eatSom.mp3")
 
     const pixels = 20;
 
