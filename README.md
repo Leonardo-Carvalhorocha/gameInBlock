@@ -1,72 +1,65 @@
-Jogo de Pixels
-Descrição
-Este é um jogo simples de dois jogadores desenvolvido em JavaScript e HTML5. O objetivo é controlar dois jogadores (Player 01 e Player 02), movendo-os pelo canvas para pegar os "pixels de comida". Cada vez que um jogador coleta um pixel, ele marca um ponto no placar.
+### Resumo do Projeto
 
-Funcionalidades:
-Dois jogadores controlados por teclas diferentes:
+**Nome do Projeto:** Jogo de Pixels
 
-Player 01: ArrowUp, ArrowDown, ArrowLeft, ArrowRight
+**Descrição:** 
+Este é um jogo simples de dois jogadores desenvolvido em JavaScript e HTML5, onde o objetivo é controlar dois jogadores para coletar "pixels de comida" no canvas. Cada jogador marca pontos ao coletar os pixels.
 
-Player 02: W, A, S, D
+### Funcionalidades
 
-Placar que exibe a pontuação de ambos os jogadores.
+- **Jogadores Controlados por Teclas Diferentes:**
+  - Player 01: Setas do teclado (ArrowUp, ArrowDown, ArrowLeft, ArrowRight)
+  - Player 02: Teclas W, A, S, D
 
-Pixels de comida que os jogadores devem coletar, aparecendo aleatoriamente no canvas.
+- **Placar:** Exibe a pontuação de ambos os jogadores.
 
-Limites de movimento para os jogadores dentro do canvas.
+- **Pixels de Comida:** Aparecem aleatoriamente no canvas e devem ser coletados pelos jogadores.
 
-Como Rodar o Jogo
-Clone ou baixe o repositório.
+- **Limites de Movimento:** Os jogadores são limitados pelo tamanho do canvas.
 
-Instale as dependências. Antes de rodar o jogo, você deve rodar o comando abaixo para instalar as dependências do projeto:
+### Como Rodar o Jogo
 
-bash
-Copiar
-Editar
-npm install
-Abra o arquivo HTML no seu navegador. Após instalar as dependências, abra o arquivo index.html no seu navegador.
+1. **Clone ou Baixe o Repositório.**
+2. **Instale as Dependências:**
+   ```bash
+   npm install
+   ```
+3. **Abra o Arquivo HTML no Navegador:**
+   Após instalar as dependências, abra o arquivo `index.html` no seu navegador.
 
-Jogar: Use as teclas para mover os jogadores:
+### Jogar
 
-Player 01: Use as teclas ArrowUp, ArrowDown, ArrowLeft, ArrowRight.
+- **Player 01:** Use as teclas ArrowUp, ArrowDown, ArrowLeft, ArrowRight.
+- **Player 02:** Use as teclas W, A, S, D.
+- **Objetivo:** Mover os jogadores para coletar os pixels de comida (cor amarela). A pontuação será atualizada no placar.
 
-Player 02: Use as teclas W, A, S, D.
+### Estrutura do Código
 
-O objetivo é mover os jogadores para coletar os pixels de comida (representados pela cor amarela). Cada vez que um jogador coleta o alimento, ele ganha um ponto.
+1. **Modelos (Models):**
+   - **Player:** Representa cada jogador com propriedades como posição, tamanho dos pixels, e pontuação.
+   - **Keydown:** Contém as teclas associadas aos controles dos jogadores.
+   - **SizeJogo:** Define os limites do jogo (canvas).
+   - **Food:** Representa o alimento que os jogadores devem coletar.
 
-A pontuação de cada jogador será atualizada no placar.
+2. **Funções Principais:**
+   - **init():** Inicializa jogadores, alimento e canvas.
+   - **initFillRect():** Desenha jogadores e alimento no canvas.
+   - **initPlayer():** Manipula movimentos dos jogadores e atualiza o placar.
+   - **verificLimitCanvas():** Verifica se o jogador está dentro dos limites do canvas.
+   - **initFoodPixels():** Gera nova posição aleatória para o alimento.
+   - **verificPlayerEatPixels():** Verifica se o jogador colidiu com o alimento.
+   - **generatePositionCanvas():** Gera posição aleatória dentro dos limites do canvas.
 
-Estrutura do Código
-1. Modelos (Models)
-Player: Representa cada jogador, contendo propriedades como a posição no canvas, tamanho dos pixels, e a pontuação.
+### Tecnologias Utilizadas
 
-Keydown: Contém as teclas associadas aos controles dos jogadores.
+- **HTML5:** Estrutura do jogo e canvas.
+- **CSS:** Estilização da página.
+- **JavaScript (ES6):** Lógica do jogo, interatividade e manipulação do canvas.
 
-SizeJogo: Define os limites do jogo (canvas), incluindo os limites mínimo e máximo para o movimento dos jogadores.
+### Licença
 
-Food: Representa o alimento que os jogadores devem coletar, contendo suas propriedades como a posição e tamanho no canvas.
-
-2. Funções Principais
-init(): Inicializa os jogadores, o alimento e o canvas. Configura o tamanho e a posição inicial dos jogadores e do alimento.
-
-initFillRect(): Função para desenhar os jogadores e o alimento no canvas.
-
-initPlayer(): Manipula os movimentos dos jogadores com base nas teclas pressionadas. Verifica se o jogador coletou o alimento e atualiza o placar.
-
-verificLimitCanvas(): Verifica se o jogador está dentro dos limites do canvas antes de permitir o movimento.
-
-initFoodPixels(): Gera uma nova posição aleatória para o alimento no canvas.
-
-verificPlayerEatPixels(): Verifica se o jogador colidiu com o alimento e, em caso afirmativo, incrementa a pontuação.
-
-generatePositionCanvas(): Gera uma posição aleatória dentro dos limites do canvas para os jogadores ou o alimento.
-
-Tecnologias Utilizadas
-HTML5: Para criar a estrutura do jogo e o canvas.
-
-CSS: Para estilizar a página e o layout do jogo.
-
-JavaScript (ES6): Para a lógica do jogo, interatividade e manipulação do canvas.
-
-Licença
 Este projeto está licenciado sob a MIT License.
+
+---
+
+Será que você quer que eu busque o repositório do GitHub correspondente a este projeto?
