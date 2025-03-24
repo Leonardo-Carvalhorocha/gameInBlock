@@ -30,6 +30,7 @@ export function Game() {
         const ctx = canvas.getContext("2d");
         const scorePlayer01 = document.querySelector("#scoreP1");
         const scorePlayer02 = document.querySelector("#scoreP2");
+        const somEat = new Audio("../assets/eatSom.mp3");
         const pixels = 20;
         document.addEventListener('keydown', initPlayer);
         let init = () => __awaiter(this, void 0, void 0, function* () {
@@ -110,6 +111,7 @@ export function Game() {
                     player01.score += 1;
                     if (scorePlayer01) {
                         scorePlayer01.textContent = `${player01.score}`;
+                        yield activeSom();
                     }
                 }
                 if (verificPlayerEatPixels(player02)) {
@@ -117,6 +119,7 @@ export function Game() {
                     player02.score += 1;
                     if (scorePlayer02) {
                         scorePlayer02.textContent = `${player02.score}`;
+                        yield activeSom();
                     }
                 }
             });
@@ -142,6 +145,15 @@ export function Game() {
         let generatePositionCanvas = () => {
             return Math.floor(Math.random() * ((limitJogo.xMax / pixels) + 1)) * pixels;
         };
+        let activeSom = () => __awaiter(this, void 0, void 0, function* () {
+            try {
+                somEat.currentTime = 0;
+                yield somEat.play();
+            }
+            catch (e) {
+                console.warn('Erro ao tocar o som:', e);
+            }
+        });
         yield init();
     });
 }

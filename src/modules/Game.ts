@@ -27,6 +27,7 @@ export async function Game() {
     const ctx = canvas.getContext("2d");
     const scorePlayer01: Element | null = document.querySelector("#scoreP1");
     const scorePlayer02: Element | null = document.querySelector("#scoreP2");
+    const somEat: HTMLAudioElement = new Audio("../assets/eatSom.mp3")
 
     const pixels = 20;
 
@@ -114,6 +115,7 @@ export async function Game() {
             player01.score += 1;
             if(scorePlayer01) {
                 scorePlayer01.textContent = `${player01.score}`;
+                await activeSom();
             }
         }
 
@@ -122,6 +124,7 @@ export async function Game() {
             player02.score += 1;
             if(scorePlayer02) {
                 scorePlayer02.textContent = `${player02.score}`;
+                await activeSom();
             }
         }
 
@@ -151,6 +154,15 @@ export async function Game() {
 
     let generatePositionCanvas = (): number => {
         return Math.floor(Math.random() * ((limitJogo.xMax / pixels) + 1)) * pixels;
+    }
+
+    let activeSom = async () => {
+        try {
+            somEat.currentTime = 0;
+            await somEat.play();
+        } catch (e) {
+            console.warn('Erro ao tocar o som:', e);
+        }
     }
 
     await init();
