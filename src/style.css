@@ -1,15 +1,67 @@
 body {
-    background: #111;
+    background: #0d0d0d;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
     color: #fff;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial Black', sans-serif;
     flex-direction: column;
 }
+
+h1 {
+    margin-bottom: 20px;
+    color: #4caf50;
+    font-size: 28px;
+    text-shadow: 0 0 8px #4caf50;
+}
+
 canvas {
-    background: #222;
+    background: #1a1a1a;
+    border: 3px solid #4caf50;
+    box-shadow: 0 0 15px #4caf50;
+}
+
+.scoreboard {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    background: #111;
+    padding: 15px;
     border: 2px solid #4caf50;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 255, 0, 0.5);
+}
+
+.scoreboard div {
+    flex: 1;
+    text-align: center;
+    background: #1f1f1f;
+    margin: 0 5px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #333;
+}
+
+.scoreboard h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.scoreboard p {
+    margin: 8px 0 0;
+    font-size: 13px;
+    color: #bdbdbd;
+    font-weight: normal;
+}
+
+.player_01 {
+    color: #ff9100;
+    text-shadow: 0 0 5px #ff9100;
+}
+
+.player_02 {
+    color: #d500f9;
+    text-shadow: 0 0 5px #d500f9;
 }

@@ -7,8 +7,22 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <h1>Jogo de pixels</h1>
-    <canvas id="gameCanvas" width="400" height="400"></canvas>
+
+    <div>
+        <h1>Jogo de pixels</h1>
+        <canvas id="gameCanvas" width="600" height="600"></canvas>
+    
+        <div class="scoreboard">
+            <div>
+                <h3 class="player_01">Player 01: <span id="scoreP1">0</span></h3>
+                <p>Teclas: ArrowUp, ArrowDown, ArrowLeft, ArrowRight</p>
+            </div>
+            <div>
+                <h3 class="player_02">Player 02: <span id="scoreP2">0</span></h3>
+                <p>Teclas: W, A, S, D</p>
+            </div>
+        </div>
+    </div>
 
     <script type="module" src="../dist/script.js"></script>
 </body>

@@ -28,13 +28,15 @@ export function Game() {
         let food = new Food();
         const canvas = document.querySelector("#gameCanvas");
         const ctx = canvas.getContext("2d");
+        const scorePlayer01 = document.querySelector("#scoreP1");
+        const scorePlayer02 = document.querySelector("#scoreP2");
         const pixels = 20;
         document.addEventListener('keydown', initPlayer);
         let init = () => __awaiter(this, void 0, void 0, function* () {
             limitJogo = {
                 xMin: 0,
-                xMax: (canvas.width - 20),
-                yMax: (canvas.height - 20),
+                xMax: (canvas.width - pixels),
+                yMax: (canvas.height - pixels),
                 yMin: 0
             };
             yield initFoodPixels();
@@ -43,13 +45,13 @@ export function Game() {
             player01.tamanhoPixelsHeight = pixels;
             player01.positionX = generatePositionCanvas();
             player01.positionY = generatePositionCanvas();
-            yield initFillRect(player01.positionX, player01.positionY, player01.tamanhoPixelsWidht, player01.tamanhoPixelsHeight, "red");
+            yield initFillRect(player01.positionX, player01.positionY, player01.tamanhoPixelsWidht, player01.tamanhoPixelsHeight, "#ff9100");
             //player 02
             player02.tamanhoPixelsHeight = pixels;
             player02.tamanhoPixelsWidht = pixels;
             player02.positionX = generatePositionCanvas();
             player02.positionY = generatePositionCanvas();
-            yield initFillRect(player02.positionX, player02.positionY, player02.tamanhoPixelsWidht, player02.tamanhoPixelsHeight, "green");
+            yield initFillRect(player02.positionX, player02.positionY, player02.tamanhoPixelsWidht, player02.tamanhoPixelsHeight, "#d500f9");
         });
         let initFillRect = (positionX, positionY, tamanhoPixelsWidht, tamanhoPixelsHeight, color) => __awaiter(this, void 0, void 0, function* () {
             if (ctx) {
@@ -99,25 +101,33 @@ export function Game() {
                 }
                 // player 01
                 yield initFillRect(player01.positionAnteriorX, player01.positionAnteriorY, player01.tamanhoPixelsWidht, player01.tamanhoPixelsHeight, "#222");
-                yield initFillRect(player01.positionX, player01.positionY, player01.tamanhoPixelsWidht, player01.tamanhoPixelsHeight, "red");
+                yield initFillRect(player01.positionX, player01.positionY, player01.tamanhoPixelsWidht, player01.tamanhoPixelsHeight, "#ff9100");
                 // player 02
                 yield initFillRect(player02.positionAnteriorX, player02.positionAnteriorY, player02.tamanhoPixelsWidht, player02.tamanhoPixelsHeight, "#222");
-                yield initFillRect(player02.positionX, player02.positionY, player02.tamanhoPixelsWidht, player02.tamanhoPixelsHeight, "green");
+                yield initFillRect(player02.positionX, player02.positionY, player02.tamanhoPixelsWidht, player02.tamanhoPixelsHeight, "#d500f9");
                 if (verificPlayerEatPixels(player01)) {
                     yield initFoodPixels();
+                    player01.score += 1;
+                    if (scorePlayer01) {
+                        scorePlayer01.textContent = `${player01.score}`;
+                    }
                 }
                 if (verificPlayerEatPixels(player02)) {
                     yield initFoodPixels();
+                    player02.score += 1;
+                    if (scorePlayer02) {
+                        scorePlayer02.textContent = `${player02.score}`;
+                    }
                 }
             });
         }
-        let verificLimitCanvas = (player, direcao) => __awaiter(this, void 0, void 0, function* () {
+        let verificLimitCanvas = (player, direction) => __awaiter(this, void 0, void 0, function* () {
             return {
                 up: player.positionY > limitJogo.yMin,
                 down: player.positionY < limitJogo.yMax,
                 left: player.positionX > limitJogo.xMin,
                 right: player.positionX < limitJogo.xMax
-            }[direcao];
+            }[direction];
         });
         let initFoodPixels = () => __awaiter(this, void 0, void 0, function* () {
             food.tamanhoPixelsWidht = pixels;

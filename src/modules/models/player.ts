@@ -8,4 +8,5 @@ export class Player {
     positionAnteriorY: number = 0;
     positionAnteriorX: number = 0;
     direction: Direcao = new Direcao();
+    score: number = 0;
 }

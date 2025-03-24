@@ -8,5 +8,6 @@ export class Player {
         this.positionAnteriorY = 0;
         this.positionAnteriorX = 0;
         this.direction = new Direcao();
+        this.score = 0;
     }
 }

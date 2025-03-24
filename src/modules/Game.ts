@@ -25,6 +25,8 @@ export async function Game() {
 
     const canvas = document.querySelector("#gameCanvas") as HTMLCanvasElement;
     const ctx = canvas.getContext("2d");
+    const scorePlayer01: Element | null = document.querySelector("#scoreP1");
+    const scorePlayer02: Element | null = document.querySelector("#scoreP2");
 
     const pixels = 20;
 
@@ -33,8 +35,8 @@ export async function Game() {
     let init = async () => {
         limitJogo = {
             xMin: 0,
-            xMax: (canvas.width - 20),
-            yMax: (canvas.height - 20),
+            xMax: (canvas.width - pixels),
+            yMax: (canvas.height - pixels),
             yMin: 0
         }
         
@@ -45,17 +47,17 @@ export async function Game() {
         player01.tamanhoPixelsHeight = pixels;
         player01.positionX = generatePositionCanvas();
         player01.positionY = generatePositionCanvas();
-        await initFillRect(player01.positionX, player01.positionY, player01.tamanhoPixelsWidht, player01.tamanhoPixelsHeight, "red");
+        await initFillRect(player01.positionX, player01.positionY, player01.tamanhoPixelsWidht, player01.tamanhoPixelsHeight, "#ff9100");
 
         //player 02
         player02.tamanhoPixelsHeight = pixels;
         player02.tamanhoPixelsWidht = pixels;
         player02.positionX = generatePositionCanvas();
         player02.positionY = generatePositionCanvas();
-        await initFillRect(player02.positionX, player02.positionY, player02.tamanhoPixelsWidht,  player02.tamanhoPixelsHeight, "green");
+        await initFillRect(player02.positionX, player02.positionY, player02.tamanhoPixelsWidht,  player02.tamanhoPixelsHeight, "#d500f9");
     }
 
-    let initFillRect = async (positionX: number, positionY: number, tamanhoPixelsWidht: number, tamanhoPixelsHeight: number, color: "red" | "#222" | "green" | "yellow") => {
+    let initFillRect = async (positionX: number, positionY: number, tamanhoPixelsWidht: number, tamanhoPixelsHeight: number, color: "#ff9100" | "#222" | "#d500f9" | "yellow") => {
         if(ctx) {
             ctx.fillStyle = color;
             ctx.fillRect(positionX, positionY, tamanhoPixelsWidht, tamanhoPixelsHeight);
@@ -100,30 +102,38 @@ export async function Game() {
 
          // player 01
         await initFillRect(player01.positionAnteriorX, player01.positionAnteriorY, player01.tamanhoPixelsWidht, player01.tamanhoPixelsHeight, "#222");
-        await initFillRect(player01.positionX, player01.positionY, player01.tamanhoPixelsWidht, player01.tamanhoPixelsHeight, "red");
+        await initFillRect(player01.positionX, player01.positionY, player01.tamanhoPixelsWidht, player01.tamanhoPixelsHeight, "#ff9100");
 
         
         // player 02
         await initFillRect(player02.positionAnteriorX, player02.positionAnteriorY, player02.tamanhoPixelsWidht, player02.tamanhoPixelsHeight, "#222");
-        await initFillRect(player02.positionX, player02.positionY, player02.tamanhoPixelsWidht, player02.tamanhoPixelsHeight, "green");
+        await initFillRect(player02.positionX, player02.positionY, player02.tamanhoPixelsWidht, player02.tamanhoPixelsHeight, "#d500f9");
 
         if(verificPlayerEatPixels(player01)) {
             await initFoodPixels();
+            player01.score += 1;
+            if(scorePlayer01) {
+                scorePlayer01.textContent = `${player01.score}`;
+            }
         }
 
         if(verificPlayerEatPixels(player02)) {
             await initFoodPixels();
+            player02.score += 1;
+            if(scorePlayer02) {
+                scorePlayer02.textContent = `${player02.score}`;
+            }
         }
 
     }
 
-    let verificLimitCanvas = async (player: Player, direcao: string) => {
+    let verificLimitCanvas = async (player: Player, direction: string) => {
         return {
             up: player.positionY > limitJogo.yMin,
             down: player.positionY < limitJogo.yMax,
             left: player.positionX > limitJogo.xMin,
             right: player.positionX < limitJogo.xMax
-        }[direcao];
+        }[direction];
     }
 
     
