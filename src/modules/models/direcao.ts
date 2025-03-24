@@ -1,6 +1,6 @@
-export interface Direcao {
-     UP: "up",
-     DOWN: "down",
-     LEFT: "left",
-     RIGHT: "right"
+export class Direcao {
+     UP = "up";
+     DOWN = "down";
+     LEFT = "left";
+     RIGHT = "right";
 }

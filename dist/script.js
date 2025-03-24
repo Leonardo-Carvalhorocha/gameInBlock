@@ -1,2 +1,2 @@
-import { Python } from "./modules/python.js";
-Python();
+import { Game } from "./modules/Game.js";
+Game();

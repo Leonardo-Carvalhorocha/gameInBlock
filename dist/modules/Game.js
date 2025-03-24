@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { Player } from "./models/player.js";
 import { SizeJogo } from "./models/sizeJogo.js";
 import { Food } from "./models/food.js";
-export function Python() {
+export function Game() {
     return __awaiter(this, void 0, void 0, function* () {
         let keydownClick = {
             ARROW_UP: "ArrowUp",
